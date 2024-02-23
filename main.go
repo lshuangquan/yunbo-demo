@@ -1,11 +1,11 @@
 package main
 
 import (
-	_ "github.com/lishuangquan/yunbo-demo/internal/packed"
+	_ "github.com/lshuangquan/yunbo-demo/internal/packed"
 
 	"github.com/gogf/gf/v2/os/gctx"
 
-	"github.com/lishuangquan/yunbo-demo/internal/cmd"
+	"github.com/lshuangquan/yunbo-demo/internal/cmd"
 )
 
 func main() {

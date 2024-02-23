@@ -5,8 +5,8 @@ import (
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
 	"github.com/gogf/gf/v2/os/glog"
-	v1 "github.com/lishuangquan/yunbo-demo/api/file/v1"
-	"github.com/lishuangquan/yunbo-demo/internal/service"
+	v1 "github.com/lshuangquan/yunbo-demo/api/file/v1"
+	"github.com/lshuangquan/yunbo-demo/internal/service"
 	"github.com/minio/minio-go/v7"
 )
 

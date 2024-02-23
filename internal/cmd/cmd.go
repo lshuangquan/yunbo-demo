@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"context"
-	"github.com/lishuangquan/yunbo-demo/internal/controller/file"
+	"github.com/lshuangquan/yunbo-demo/internal/controller/file"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"

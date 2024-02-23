@@ -1,4 +1,4 @@
-module github.com/lishuangquan/yunbo-demo
+module github.com/lshuangquan/yunbo-demo
 
 go 1.19
 

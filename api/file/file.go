@@ -2,7 +2,7 @@ package file
 
 import (
 	"context"
-	v1 "github.com/lishuangquan/yunbo-demo/api/file/v1"
+	v1 "github.com/lshuangquan/yunbo-demo/api/file/v1"
 )
 
 type IFileV1 interface {

@@ -1,7 +1,7 @@
 package file
 
 import (
-	"github.com/lishuangquan/yunbo-demo/api/file"
+	"github.com/lshuangquan/yunbo-demo/api/file"
 )
 
 type FileController struct {
