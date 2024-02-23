@@ -16,13 +16,17 @@ type UploadRes struct {
 
 type ViewReq struct {
 	g.Meta `path:"/file/view" tags:"view" method:"get" summary:"文件查看"`
+
+	Request  *ghttp.Request
+	FileName string `json:"fileName" type:"string" dc:"文件名"`
 }
 type ViewRes struct {
 	g.Meta `mime:"text/html" example:"string"`
 }
 
 type DelReq struct {
-	g.Meta `path:"/file/delete" tags:"delete" method:"post" summary:"文件删除"`
+	g.Meta   `path:"/file/delete" tags:"delete" method:"post" summary:"文件删除"`
+	FileName string `json:"fileName" type:"string" dc:"文件名"`
 }
 type DelRes struct {
 	g.Meta `mime:"text/html" example:"string"`

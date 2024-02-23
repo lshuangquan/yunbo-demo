@@ -2,12 +2,16 @@ package file
 
 import (
 	"context"
+	"fmt"
+	"github.com/gogf/gf/v2/crypto/gmd5"
 	"github.com/gogf/gf/v2/errors/gcode"
 	"github.com/gogf/gf/v2/errors/gerror"
+	"github.com/gogf/gf/v2/net/ghttp"
 	"github.com/gogf/gf/v2/os/glog"
 	v1 "github.com/lshuangquan/yunbo-demo/api/file/v1"
 	"github.com/lshuangquan/yunbo-demo/internal/service"
 	"github.com/minio/minio-go/v7"
+	"io"
 )
 
 func (c *FileController) Upload(ctx context.Context, req *v1.UploadReq) (res *v1.UploadRes, errRes error) {
@@ -42,10 +46,50 @@ func (c *FileController) Upload(ctx context.Context, req *v1.UploadReq) (res *v1
 	return file, nil
 }
 
-func (c *FileController) View(ctx context.Context, req *v1.ViewReq) (res *v1.ViewRes, err error) {
-	return nil, nil
+func (c *FileController) View(req *ghttp.Request) {
+	//todo 1. check fileName is valid
+	fileName := req.GetQuery("fileName").String()
+	if fileName == "" {
+		req.Response.WriteJson(gcode.New(1, "param invalid", "filename is empty"))
+		return
+	}
+	//todo 2, check the file is exist;
+	//todo 3. user has the privileges to view the file
+	fileObj, fileErr := service.GetObject(req.GetCtx(), fileName)
+	defer fileObj.Close()
+	if fileErr != nil {
+		glog.Errorf(req.GetCtx(), "view error :%+v", fileErr)
+		req.Response.WriteJson(gcode.New(500, "upload file error", "system internal error"))
+		return
+	}
+	writer := req.Response.RawWriter()
+	fileBytes, err := io.ReadAll(fileObj)
+	if err != nil {
+		glog.Errorf(req.GetCtx(), "read file from oss error :%+v", fileErr)
+		req.Response.WriteJson(gcode.New(501, "read file from oss error", "system internal error"))
+		return
+	}
+	req.Response.Header().Add("Content-type", "application/octet-stream")
+	req.Response.Header().Add("Content-Disposition", fmt.Sprintf("%s; filename=%s", gmd5.MustEncryptString(fileName), fileName))
+	writer.WriteHeader(200)
+	_, err = writer.Write(fileBytes)
+	if err != nil {
+		glog.Errorf(req.GetCtx(), "resp write   error :%+v", err)
+		//req.Response.WriteJson(gcode.New(502, "resp write error", "system internal error"))
+		return
+	}
+
+	return
 }
 
 func (c *FileController) Delete(ctx context.Context, req *v1.DelReq) (res *v1.DelRes, err error) {
-	return nil, nil
+
+	//todo 1. check fileName is valid
+	//todo 2, check the file is exist;
+	//todo 3. user has the privileges to del the file
+	err = service.DelObject(ctx, req.FileName)
+	if err != nil {
+		return nil, gerror.NewCode(gcode.New(500, "upload file error", "system internal error"))
+	}
+	return res, nil
 }
