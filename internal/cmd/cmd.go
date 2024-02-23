@@ -3,6 +3,7 @@ package cmd
 import (
 	"context"
 	"github.com/lshuangquan/yunbo-demo/internal/controller/file"
+	"github.com/lshuangquan/yunbo-demo/internal/controller/page"
 
 	"github.com/gogf/gf/v2/frame/g"
 	"github.com/gogf/gf/v2/net/ghttp"
@@ -22,6 +23,13 @@ var (
 				group.Middleware(ghttp.MiddlewareHandlerResponse)
 				group.Bind(
 					file.New(),
+				)
+			})
+
+			s.Group("/page", func(group *ghttp.RouterGroup) {
+				group.Middleware(ghttp.MiddlewareHandlerResponse)
+				group.Bind(
+					page.New(),
 				)
 			})
 

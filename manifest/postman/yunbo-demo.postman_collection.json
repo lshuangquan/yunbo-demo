@@ -1,0 +1,165 @@
+{
+	"info": {
+		"_postman_id": "fa80943e-afd0-43b9-8a8b-39f80e5890fa",
+		"name": "demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14101087",
+		"_collection_link": "https://lunar-crescent-229159.postman.co/workspace/yunbo~cbd8fcea-6295-4bd2-b155-faedf970db2c/collection/14101087-fa80943e-afd0-43b9-8a8b-39f80e5890fa?action=share&source=collection_link&creator=14101087"
+	},
+	"item": [
+		{
+			"name": "file-upload",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/shuangquanli/Documents/Log Files/Screencast0.txt"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/file/upload",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"file",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "file-delete",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"fileName\": \"Screencast0.txt\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/file/delete",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"file",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "file-view",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/file/view?fileName=Screencast0.txt",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"file",
+						"view"
+					],
+					"query": [
+						{
+							"key": "fileName",
+							"value": "Screencast0.txt"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "page-count",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/page/viewcount?pagePath=/hello",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"page",
+						"viewcount"
+					],
+					"query": [
+						{
+							"key": "pagePath",
+							"value": "/hello"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "page-add",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"pagePath\": \"/hello\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/page/viewadd",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"page",
+						"viewadd"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
