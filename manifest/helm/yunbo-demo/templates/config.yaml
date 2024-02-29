@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: yunbo-demo-configmap
+data:
+  {{- (.Files.Glob "files/*").AsConfig | nindent 2 -}}
+  
